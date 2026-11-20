@@ -1,6 +1,8 @@
+import { addButtonHaptics, triggerHapticFeedback } from "../haptics.js";
+
 /**
- * Tic-Tac-Toe für zwei Spieler an einem Gerät.
- * Enthält Spielzustand, Spiellogik und Darstellung des Spielfelds.
+ * Tic-Tac-Toe fuer zwei Spieler an einem Geraet.
+ * Enthaelt Spielzustand, Spiellogik und Darstellung des Spielfelds.
  */
 export function initTicTacToe() {
     const WIN_PATTERNS = [
@@ -22,6 +24,11 @@ export function initTicTacToe() {
     const scoreDrawEl = document.getElementById("scoreDraw");
     const boxX = document.getElementById("boxX");
     const boxO = document.getElementById("boxO");
+    const newRoundBtn = document.getElementById("newRoundBtn");
+    const resetScoreBtn = document.getElementById("resetScoreBtn");
+
+    addButtonHaptics(newRoundBtn);
+    addButtonHaptics(resetScoreBtn);
 
     function updateTurnHighlight() {
         boxX.classList.toggle("active-x", !gameOver && currentPlayer === "X");
@@ -78,6 +85,8 @@ export function initTicTacToe() {
             return;
         }
 
+        // Nur ein gueltiger Zug loest die etwas staerkere Platzierungs-Vibration aus.
+        triggerHapticFeedback("move");
         boardState[index] = currentPlayer;
         const result = checkWinner();
 
@@ -133,9 +142,9 @@ export function initTicTacToe() {
         renderBoard();
     }
 
-    document.getElementById("newRoundBtn").addEventListener("click", startNewRound);
-    document.getElementById("resetScoreBtn").addEventListener("click", resetScores);
+    newRoundBtn.addEventListener("click", startNewRound);
+    resetScoreBtn.addEventListener("click", resetScores);
 
-    // Spielfeld beim Öffnen der Anwendung initial darstellen.
+    // Spielfeld beim Oeffnen der Anwendung initial darstellen.
     renderBoard();
 }

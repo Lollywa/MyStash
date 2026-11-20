@@ -1,3 +1,5 @@
+import { addButtonHaptics } from "./haptics.js";
+
 /**
  * Initialisiert die Navigation zwischen Spiele-Lobby und Tic-Tac-Toe.
  */
@@ -21,6 +23,9 @@ export function initNavigation() {
         backBtn.classList.remove("hidden");
         headerTitle.textContent = "Tic-Tac-Toe";
     }
+
+    addButtonHaptics(openTttBtn);
+    addButtonHaptics(backBtn);
 
     openTttBtn.addEventListener("click", showTicTacToe);
     backBtn.addEventListener("click", showLobby);
