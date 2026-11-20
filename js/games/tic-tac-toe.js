@@ -92,7 +92,7 @@ export function initTicTacToe() {
                 scores[result.winner]++;
                 scoreXEl.textContent = scores.X;
                 scoreOEl.textContent = scores.O;
-                statusBar.textContent = \`Spieler \${result.winner} gewinnt!\`;
+                statusBar.textContent = "Spieler " + result.winner + " gewinnt!";
             }
 
             updateTurnHighlight();
@@ -101,7 +101,7 @@ export function initTicTacToe() {
         }
 
         currentPlayer = currentPlayer === "X" ? "O" : "X";
-        statusBar.textContent = \`Spieler \${currentPlayer} ist am Zug\`;
+        statusBar.textContent = "Spieler " + currentPlayer + " ist am Zug";
         updateTurnHighlight();
         renderBoard();
     }
@@ -112,7 +112,7 @@ export function initTicTacToe() {
         boardState = Array(9).fill(null);
         gameOver = false;
 
-        statusBar.textContent = \`Spieler \${currentPlayer} beginnt\`;
+        statusBar.textContent = "Spieler " + currentPlayer + " beginnt";
         updateTurnHighlight();
         renderBoard();
     }
