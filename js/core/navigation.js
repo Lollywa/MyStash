@@ -1,12 +1,10 @@
 import { addButtonHaptics } from "./haptics.js";
 
-/**
- * Initialisiert die Navigation zwischen Spiele-Lobby und Tic-Tac-Toe.
- */
+/** Initialisiert die Navigation zwischen Feature-Übersicht und Tic-Tac-Toe. */
 export function initNavigation() {
     const lobbyView = document.getElementById("lobbyView");
     const tttView = document.getElementById("tttView");
-    const headerTitle = document.getElementById("headerTitle");
+    const headerSubtitle = document.getElementById("headerSubtitle");
     const backBtn = document.getElementById("backBtn");
     const openTttBtn = document.getElementById("openTttBtn");
 
@@ -14,14 +12,14 @@ export function initNavigation() {
         tttView.classList.add("hidden");
         lobbyView.classList.remove("hidden");
         backBtn.classList.add("hidden");
-        headerTitle.textContent = "Spielehalle";
+        headerSubtitle.textContent = "Deine Features. Alles an einem Ort.";
     }
 
     function showTicTacToe() {
         lobbyView.classList.add("hidden");
         tttView.classList.remove("hidden");
         backBtn.classList.remove("hidden");
-        headerTitle.textContent = "Tic-Tac-Toe";
+        headerSubtitle.textContent = "Tic-Tac-Toe · Zwei Spieler";
     }
 
     addButtonHaptics(openTttBtn);

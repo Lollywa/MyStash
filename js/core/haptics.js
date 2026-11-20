@@ -26,7 +26,6 @@ export function triggerHapticFeedback(type = "tap") {
 export function addButtonHaptics(button) {
     if (!button) return;
 
-    // Touch/Maus: sofort bei Beginn der Beruehrung reagieren.
     button.addEventListener("pointerdown", (event) => {
         if (event.isPrimary === false || event.button > 0) return;
         triggerHapticFeedback("tap");

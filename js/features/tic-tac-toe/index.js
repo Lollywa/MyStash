@@ -1,9 +1,6 @@
-import { addButtonHaptics, triggerHapticFeedback } from "../haptics.js";
+import { addButtonHaptics, triggerHapticFeedback } from "../../core/haptics.js";
 
-/**
- * Tic-Tac-Toe fuer zwei Spieler an einem Geraet.
- * Enthaelt Spielzustand, Spiellogik und Darstellung des Spielfelds.
- */
+/** Tic-Tac-Toe fuer zwei Spieler an einem Geraet. */
 export function initTicTacToe() {
     const WIN_PATTERNS = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // Reihen
@@ -40,7 +37,9 @@ export function initTicTacToe() {
 
         boardState.forEach((val, idx) => {
             const cell = document.createElement("button");
+            cell.type = "button";
             cell.className = "cell";
+            cell.setAttribute("aria-label", "Feld " + (idx + 1) + (val ? ", " + val : ", frei"));
 
             if (val) {
                 cell.textContent = val;
@@ -81,11 +80,8 @@ export function initTicTacToe() {
     }
 
     function handleMove(index) {
-        if (gameOver || boardState[index] !== null) {
-            return;
-        }
+        if (gameOver || boardState[index] !== null) return;
 
-        // Nur ein gueltiger Zug loest die etwas staerkere Platzierungs-Vibration aus.
         triggerHapticFeedback("move");
         boardState[index] = currentPlayer;
         const result = checkWinner();
@@ -96,12 +92,12 @@ export function initTicTacToe() {
             if (result.winner === "draw") {
                 scores.draw++;
                 scoreDrawEl.textContent = scores.draw;
-                statusBar.textContent = "Unentschieden!";
+                statusBar.innerHTML = '<span class="status-indicator status-indicator-success"></span> Unentschieden!';
             } else {
                 scores[result.winner]++;
                 scoreXEl.textContent = scores.X;
                 scoreOEl.textContent = scores.O;
-                statusBar.textContent = "Spieler " + result.winner + " gewinnt!";
+                statusBar.innerHTML = '<span class="status-indicator status-indicator-success"></span> Spieler ' + result.winner + ' gewinnt!';
             }
 
             updateTurnHighlight();
@@ -110,7 +106,7 @@ export function initTicTacToe() {
         }
 
         currentPlayer = currentPlayer === "X" ? "O" : "X";
-        statusBar.textContent = "Spieler " + currentPlayer + " ist am Zug";
+        statusBar.innerHTML = '<span class="status-indicator"></span> Spieler ' + currentPlayer + ' ist am Zug';
         updateTurnHighlight();
         renderBoard();
     }
@@ -121,7 +117,7 @@ export function initTicTacToe() {
         boardState = Array(9).fill(null);
         gameOver = false;
 
-        statusBar.textContent = "Spieler " + currentPlayer + " beginnt";
+        statusBar.innerHTML = '<span class="status-indicator"></span> Spieler ' + currentPlayer + ' beginnt';
         updateTurnHighlight();
         renderBoard();
     }
@@ -137,7 +133,7 @@ export function initTicTacToe() {
         boardState = Array(9).fill(null);
         gameOver = false;
 
-        statusBar.textContent = "Spieler X ist am Zug";
+        statusBar.innerHTML = '<span class="status-indicator"></span> Spieler X ist am Zug';
         updateTurnHighlight();
         renderBoard();
     }
@@ -145,6 +141,5 @@ export function initTicTacToe() {
     newRoundBtn.addEventListener("click", startNewRound);
     resetScoreBtn.addEventListener("click", resetScores);
 
-    // Spielfeld beim Oeffnen der Anwendung initial darstellen.
     renderBoard();
 }
