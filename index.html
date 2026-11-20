@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -15,47 +14,29 @@
     <link rel="apple-touch-icon" href="./assets/icon-192.png" />
     <link rel="stylesheet" href="./css/app.css" />
 </head>
-
 <body>
     <div class="app-shell">
         <header class="app-header">
             <div class="brand">
-                <div class="brand-mark" aria-hidden="true">M<span>.</span></div>
+                <img class="brand-logo" src="./assets/icon-192.png" alt="" aria-hidden="true" />
                 <div class="brand-copy">
                     <h1 id="headerTitle">MyStash</h1>
-                    <p id="headerSubtitle">Deine Features. Alles an einem Ort.</p>
                 </div>
             </div>
             <button id="backBtn" class="back-button hidden" type="button">
-                <span aria-hidden="true">←</span>
+                <span class="back-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
                 <span>Alle Features</span>
             </button>
         </header>
 
         <main id="lobbyView" class="lobby-view">
-            <section class="welcome-panel" aria-labelledby="welcomeTitle">
-                <div class="welcome-copy">
-                    <p class="eyebrow"><span class="eyebrow-dot"></span> DEIN PERSÖNLICHER TOOLKIT</p>
-                    <h2 id="welcomeTitle">Alles, was du brauchst.<br /><span>An einem Ort.</span></h2>
-                    <p class="welcome-description">
-                        Eine Sammlung kleiner Helfer und Features, die deinen digitalen Alltag einfacher machen.
-                    </p>
-                </div>
-                <div class="welcome-art" aria-hidden="true">
-                    <div class="art-orbit art-orbit-outer"></div>
-                    <div class="art-orbit art-orbit-inner"></div>
-                    <div class="art-core">M<span>.</span></div>
-                    <div class="art-spark art-spark-one"></div>
-                    <div class="art-spark art-spark-two"></div>
-                </div>
-            </section>
-
             <section class="features-section" aria-labelledby="featuresTitle">
                 <div class="section-heading">
-                    <div>
-                        <p class="eyebrow">DEINE SAMMLUNG</p>
-                        <h2 id="featuresTitle">Features</h2>
-                    </div>
+                    <h2 id="featuresTitle">Features</h2>
                     <span class="feature-count"><span class="count-dot"></span> 1 verfügbar</span>
                 </div>
 
@@ -63,16 +44,15 @@
                     <button class="feature-card" id="openTttBtn" type="button">
                         <span class="feature-icon feature-icon-game" aria-hidden="true">
                             <svg viewBox="0 0 48 48" fill="none">
-                                <path d="M17 8V40M31 8V40M8 17H40M8 31H40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
-                                <path d="m12 11 5 5m0-5-5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
-                                <circle cx="31" cy="24" r="4" stroke="currentColor" stroke-width="2.5" />
+                                <path d="M16 4V44M32 4V44M4 16H44M4 32H44" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M7 7L13 13M13 7L7 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                                <circle cx="40" cy="40" r="3.5" stroke="currentColor" stroke-width="2.5" />
                             </svg>
                         </span>
                         <span class="feature-content">
                             <span class="feature-category">SPIEL · 2 SPIELER</span>
                             <span class="feature-title">Tic-Tac-Toe</span>
                             <span class="feature-description">Der Klassiker für zwischendurch. Direkt gemeinsam auf einem Gerät spielen.</span>
-                            <span class="feature-open">Feature öffnen <span aria-hidden="true">↗</span></span>
                         </span>
                         <span class="feature-arrow" aria-hidden="true">→</span>
                     </button>
@@ -80,7 +60,7 @@
                     <div class="feature-card feature-card-disabled" aria-disabled="true">
                         <span class="feature-icon feature-icon-soon" aria-hidden="true">
                             <svg viewBox="0 0 48 48" fill="none">
-                                <path d="M24 7v34M7 24h34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M24 7V41M7 24H41" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
                                 <circle cx="24" cy="24" r="17" stroke="currentColor" stroke-width="2" stroke-dasharray="3 5" />
                             </svg>
                         </span>
@@ -93,20 +73,11 @@
                     </div>
                 </div>
             </section>
-
-            <footer class="app-footer">
-                <span>MY<span>STASH</span></span>
-                <span>DEIN PERSÖNLICHER DIGITALER SAMMELPLATZ</span>
-            </footer>
         </main>
 
-        <section id="tttView" class="game-view hidden" aria-labelledby="gameTitle">
+        <section id="tttView" class="game-view hidden" aria-labelledby="gameLabel">
             <div class="game-intro">
-                <div>
-                    <p class="eyebrow">FEATURE 01 <span class="intro-separator">/</span> SPIEL</p>
-                    <h2 id="gameTitle">Tic-Tac-Toe</h2>
-                    <p class="game-description">Zwei Spieler. Ein Spielfeld. Wer schafft drei in einer Reihe?</p>
-                </div>
+                <p class="eyebrow" id="gameLabel">FEATURE 01 <span class="intro-separator">/</span> TIC TAC TOE</p>
                 <span class="local-pill"><span></span> LOKAL · 2P</span>
             </div>
 
@@ -142,14 +113,9 @@
                     <span aria-hidden="true">⟲</span> Punkte zurücksetzen
                 </button>
             </div>
-            <footer class="app-footer app-footer-game">
-                <span>MY<span>STASH</span></span>
-                <span>DEIN PERSÖNLICHER DIGITALER SAMMELPLATZ</span>
-            </footer>
         </section>
     </div>
 
     <script type="module" src="./js/app.js"></script>
 </body>
-
 </html>
